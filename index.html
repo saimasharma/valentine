@@ -281,6 +281,18 @@
     noBtn.addEventListener("click", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
+      const song = document.getElementById("loveSong");
+song.volume = 0;
+song.currentTime = 0;
+song.play();
+
+let v = 0;
+const fade = setInterval(() => {
+  v += 0.04;
+  song.volume = Math.min(v, 0.7);
+  if (v >= 0.7) clearInterval(fade);
+}, 120);
+
       const n = (localStorage.getItem("valName") || "my love");
       result.style.display = "block";
       resultText.innerHTML =
@@ -338,5 +350,8 @@
       }catch(e){}
     }
   </script>
+  <audio id="loveSong" preload="auto">
+  <source src="meri-zindagi.mp3" type="audio/mpeg">
+</audio>
 </body>
 </html>
