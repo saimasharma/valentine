@@ -281,28 +281,37 @@
     noBtn.addEventListener("click", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
-      const song = document.getElementById("loveSong");
-song.volume = 0;
-song.currentTime = 0;
-song.play();
+  const song = document.getElementById("loveSong");
 
-let v = 0;
-const fade = setInterval(() => {
-  v += 0.04;
-  song.volume = Math.min(v, 0.7);
-  if (v >= 0.7) clearInterval(fade);
-}, 120);
+  if (!song) {
+    console.log("Audio element not found!");
+  } else {
+    song.volume = 0;
+    song.currentTime = 0;
 
-      const n = (localStorage.getItem("valName") || "my love");
-      result.style.display = "block";
-      resultText.innerHTML =
-        `Okay ${escapeHtml(n)}… it’s official. 💍(almost) <br/><br/>
-         You just unlocked: <b>Unlimited hugs</b>, <b>soft kisses</b>, and <b>me being annoyingly in love</b> with you. 🥰<br/><br/>
-         Now go text me: <b>"Yes, I’m yours 💘"</b>`;
+    song.play()
+      .then(() => {
+        let v = 0;
+        const fade = setInterval(() => {
+          v += 0.04;
+          song.volume = Math.min(v, 0.7);
+          if (v >= 0.7) clearInterval(fade);
+        }, 120);
+      })
+      .catch(err => console.log("PLAY ERROR:", err));
+  }
 
-      popConfetti(80);
-      playCuteBeep();
-    });
+  const n = (localStorage.getItem("valName") || "my love");
+  result.style.display = "block";
+  resultText.innerHTML =
+    `Okay ${escapeHtml(n)}… it’s official. 💍(almost) <br/><br/>
+     You just unlocked: <b>Unlimited hugs</b>, <b>soft kisses</b>, and <b>me being annoyingly in love</b> with you. 🥰<br/><br/>
+     Now go text me: <b>"Yes, I’m yours 💘"</b>`;
+
+  popConfetti(80);
+  playCuteBeep();
+});
+
 
     function escapeHtml(str){
       return str.replace(/[&<>"']/g, (m) => ({
