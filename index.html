@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Valentine Request 💘</title>
+
   <style>
     :root{
       --bg1:#fff1f6;
@@ -14,21 +15,24 @@
       --pink2:#ff78a8;
       --shadow: 0 20px 60px rgba(0,0,0,.12);
     }
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box; }
+
     body{
       margin:0;
       min-height:100vh;
       font-family: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
-      background: radial-gradient(1200px 800px at 20% 10%, var(--bg2), transparent),
-                  radial-gradient(1000px 700px at 80% 30%, #ffe0ea, transparent),
-                  linear-gradient(135deg, var(--bg1), #fff);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, var(--bg2), transparent),
+        radial-gradient(1000px 700px at 80% 30%, #ffe0ea, transparent),
+        linear-gradient(135deg, var(--bg1), #fff);
       display:flex;
       align-items:center;
       justify-content:center;
       padding:24px;
       overflow:hidden;
     }
+
     .hearts{
       position:fixed; inset:0; pointer-events:none; opacity:.55;
       background-image:
@@ -39,9 +43,10 @@
       animation: floatBg 10s ease-in-out infinite alternate;
     }
     @keyframes floatBg{
-      from{transform:translateY(0px)}
-      to{transform:translateY(-14px)}
+      from{ transform:translateY(0px); }
+      to{ transform:translateY(-14px); }
     }
+
     .card{
       width:min(720px, 100%);
       background:var(--card);
@@ -52,6 +57,7 @@
       padding:28px;
       position:relative;
     }
+
     .badge{
       display:inline-flex;
       align-items:center;
@@ -63,17 +69,20 @@
       font-weight:600;
       letter-spacing:.2px;
     }
+
     .title{
       margin:18px 0 8px;
       font-size: clamp(28px, 3.8vw, 44px);
       line-height:1.1;
       letter-spacing:-.5px;
     }
+
     .subtitle{
       margin:0 0 18px;
       font-size: clamp(15px, 2.1vw, 18px);
       opacity:.85;
     }
+
     .inputRow{
       margin:16px 0 12px;
       display:flex;
@@ -81,6 +90,7 @@
       flex-wrap:wrap;
       align-items:center;
     }
+
     input{
       flex:1 1 240px;
       padding:14px 16px;
@@ -90,7 +100,11 @@
       font-size:16px;
       background:#fff;
     }
-    input:focus{ border-color: rgba(255,77,141,.55); box-shadow:0 0 0 4px rgba(255,77,141,.14); }
+    input:focus{
+      border-color: rgba(255,77,141,.55);
+      box-shadow:0 0 0 4px rgba(255,77,141,.14);
+    }
+
     .btn{
       border:0;
       border-radius:14px;
@@ -102,15 +116,13 @@
       user-select:none;
     }
     .btn:active{ transform: translateY(1px) scale(.99); }
+
     .btnPrimary{
       background:linear-gradient(135deg, var(--pink), var(--pink2));
       color:white;
       box-shadow: 0 12px 24px rgba(255,77,141,.25);
     }
-    .btnSecondary{
-      background:white;
-      border:1px solid rgba(0,0,0,.12);
-    }
+
     .question{
       margin-top:14px;
       padding:18px;
@@ -118,11 +130,13 @@
       background:rgba(255,255,255,.7);
       border:1px dashed rgba(255,77,141,.35);
     }
+
     .qText{
       font-size: clamp(18px, 2.7vw, 24px);
       margin:0 0 14px;
       font-weight:800;
     }
+
     .actions{
       display:flex;
       gap:12px;
@@ -130,6 +144,7 @@
       align-items:center;
       position:relative;
     }
+
     .yes{
       background:linear-gradient(135deg, #24c6a6, #2ed38d);
       color:white;
@@ -137,6 +152,7 @@
       padding:14px 20px;
       border-radius:16px;
     }
+
     .no{
       background:white;
       border:1px solid rgba(0,0,0,.12);
@@ -144,11 +160,25 @@
       border-radius:16px;
       position:relative;
     }
+
     .hint{
       margin:10px 0 0;
       font-size:14px;
       opacity:.75;
     }
+
+    .nowPlaying{
+      margin-top:10px;
+      font-size:13px;
+      opacity:.75;
+      display:none;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,77,141,.18);
+      background:rgba(255,255,255,.65);
+      width: fit-content;
+    }
+
     .result{
       margin-top:18px;
       display:none;
@@ -157,11 +187,13 @@
       background:linear-gradient(135deg, rgba(255,77,141,.12), rgba(255,120,168,.12));
       border:1px solid rgba(255,77,141,.25);
     }
+
     .result h2{
       margin:0 0 6px;
       font-size:22px;
     }
     .result p{ margin:0; opacity:.9; line-height:1.5; }
+
     .footer{
       margin-top:16px;
       opacity:.65;
@@ -171,14 +203,21 @@
       gap:10px;
       flex-wrap:wrap;
     }
+
     .tiny{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       opacity:.7;
     }
   </style>
 </head>
+
 <body>
   <div class="hearts"></div>
+
+  <!-- ✅ Song file must exist in repo as: tujhme.mp3 -->
+  <audio id="loveSong" preload="auto">
+    <source src="tujhme.mp3" type="audio/mpeg">
+  </audio>
 
   <main class="card">
     <div class="badge">💌 Official Request • Valentine Edition</div>
@@ -202,9 +241,9 @@
         <button class="btn no" id="noBtn">No 🙂</button>
       </div>
 
-      <p class="hint" id="hint">
-        Hint: The “No” button is shy. Very shy.
-      </p>
+      <p class="hint" id="hint">Hint: The “No” button is shy. Very shy.</p>
+
+      <div class="nowPlaying" id="nowPlaying">🎵 Now playing: <b>Tujh Mein Rab Dikhta Hai</b></div>
     </section>
 
     <section class="result" id="result">
@@ -228,6 +267,8 @@
 
     const result     = document.getElementById("result");
     const resultText = document.getElementById("resultText");
+    const nowPlaying = document.getElementById("nowPlaying");
+    const song       = document.getElementById("loveSong");
 
     // Load saved name if any
     const saved = localStorage.getItem("valName");
@@ -252,7 +293,6 @@
       const btnRect = noBtn.getBoundingClientRect();
       const pad = 16;
 
-      // compute random position within viewport bounds
       const maxX = window.innerWidth - btnRect.width - pad;
       const maxY = window.innerHeight - btnRect.height - pad;
 
@@ -276,42 +316,43 @@
       hint.textContent = lines[Math.min(dodgeCount-1, lines.length-1)];
     }
 
-    // Dodge on hover AND on click attempts
     noBtn.addEventListener("mouseenter", moveNoButton);
     noBtn.addEventListener("click", moveNoButton);
 
+    // ✅ YES: play song + show result + confetti
     yesBtn.addEventListener("click", () => {
-  const song = document.getElementById("loveSong");
+      // Play the song (fade in)
+      if (song) {
+        song.volume = 0;
+        song.currentTime = 0;
 
-  if (!song) {
-    console.log("Audio element not found!");
-  } else {
-    song.volume = 0;
-    song.currentTime = 0;
+        song.play().then(() => {
+          nowPlaying.style.display = "inline-block";
 
-    song.play()
-      .then(() => {
-        let v = 0;
-        const fade = setInterval(() => {
-          v += 0.04;
-          song.volume = Math.min(v, 0.7);
-          if (v >= 0.7) clearInterval(fade);
-        }, 120);
-      })
-      .catch(err => console.log("PLAY ERROR:", err));
-  }
+          let v = 0;
+          const fade = setInterval(() => {
+            v += 0.04;
+            song.volume = Math.min(v, 0.7);
+            if (v >= 0.7) clearInterval(fade);
+          }, 120);
+        }).catch(err => {
+          // If something blocks audio, you’ll know
+          console.log("PLAY ERROR:", err);
+          nowPlaying.style.display = "inline-block";
+          nowPlaying.innerHTML = "⚠️ Song couldn’t play (check file name: <b>tujhme.mp3</b>)";
+        });
+      }
 
-  const n = (localStorage.getItem("valName") || "my love");
-  result.style.display = "block";
-  resultText.innerHTML =
-    `Okay ${escapeHtml(n)}… it’s official. 💍(almost) <br/><br/>
-     You just unlocked: <b>Unlimited hugs</b>, <b>soft kisses</b>, and <b>me being annoyingly in love</b> with you. 🥰<br/><br/>
-     Now go text me: <b>"Yes, I’m yours 💘"</b>`;
+      const n = (localStorage.getItem("valName") || "my love");
+      result.style.display = "block";
+      resultText.innerHTML =
+        `Okay ${escapeHtml(n)}… it’s official. 💍(almost) <br/><br/>
+         You just unlocked: <b>Unlimited hugs</b>, <b>soft kisses</b>, and <b>me being annoyingly in love</b> with you. 🥰<br/><br/>
+         Now go text me: <b>"Yes, I’m yours 💘"</b>`;
 
-  popConfetti(80);
-  playCuteBeep();
-});
-
+      popConfetti(80);
+      playCuteBeep();
+    });
 
     function escapeHtml(str){
       return str.replace(/[&<>"']/g, (m) => ({
@@ -343,7 +384,7 @@
       }
     }
 
-    // Tiny beep (no external audio files)
+    // Tiny beep
     function playCuteBeep(){
       try{
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -359,8 +400,5 @@
       }catch(e){}
     }
   </script>
-  <audio id="loveSong" preload="auto">
-  <source src="tujhme.mp3" type="audio/mpeg">
-</audio>
 </body>
 </html>
