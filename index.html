@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
   <title>Valentine Request 💘</title>
+
+  <!-- Romantic fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -14,13 +20,16 @@
       --pink:#ff4d8d;
       --pink2:#ff78a8;
       --shadow: 0 20px 60px rgba(0,0,0,.12);
+      --green1:#24c6a6;
+      --green2:#2ed38d;
     }
+
     *{ box-sizing:border-box; }
 
     body{
       margin:0;
       min-height:100vh;
-      font-family: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
       background:
         radial-gradient(1200px 800px at 20% 10%, var(--bg2), transparent),
@@ -42,19 +51,20 @@
       filter: blur(.2px);
       animation: floatBg 10s ease-in-out infinite alternate;
     }
+
     @keyframes floatBg{
       from{ transform:translateY(0px); }
       to{ transform:translateY(-14px); }
     }
 
     .card{
-      width:min(720px, 100%);
+      width:min(760px, 100%);
       background:var(--card);
       border:1px solid rgba(255,77,141,.18);
-      border-radius:28px;
+      border-radius:30px;
       box-shadow:var(--shadow);
       backdrop-filter: blur(10px);
-      padding:28px;
+      padding:30px;
       position:relative;
     }
 
@@ -71,17 +81,20 @@
     }
 
     .title{
-      margin:18px 0 8px;
-      font-size: clamp(28px, 3.8vw, 44px);
-      line-height:1.1;
-      letter-spacing:-.5px;
+      margin:18px 0 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(34px, 4.4vw, 54px);
+      line-height:1.05;
+      letter-spacing:-.6px;
     }
 
     .subtitle{
       margin:0 0 18px;
       font-size: clamp(15px, 2.1vw, 18px);
-      opacity:.85;
+      opacity:.9;
+      line-height:1.65;
     }
+    .subtitle i{ opacity:.9; }
 
     .inputRow{
       margin:16px 0 12px;
@@ -126,15 +139,16 @@
     .question{
       margin-top:14px;
       padding:18px;
-      border-radius:20px;
-      background:rgba(255,255,255,.7);
+      border-radius:22px;
+      background:rgba(255,255,255,.75);
       border:1px dashed rgba(255,77,141,.35);
     }
 
     .qText{
-      font-size: clamp(18px, 2.7vw, 24px);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3vw, 30px);
       margin:0 0 14px;
-      font-weight:800;
+      font-weight:700;
     }
 
     .actions{
@@ -146,31 +160,40 @@
     }
 
     .yes{
-      background:linear-gradient(135deg, #24c6a6, #2ed38d);
+      background:linear-gradient(135deg, var(--green1), var(--green2));
       color:white;
       box-shadow: 0 12px 24px rgba(46,211,141,.2);
-      padding:14px 20px;
-      border-radius:16px;
+      padding:14px 22px;
+      border-radius:18px;
+      letter-spacing:.2px;
+      animation: pulse 2.1s infinite;
+    }
+
+    @keyframes pulse{
+      0% { box-shadow: 0 12px 24px rgba(46,211,141,.18), 0 0 0 0 rgba(46,211,141,.35); }
+      70% { box-shadow: 0 12px 24px rgba(46,211,141,.18), 0 0 0 14px rgba(46,211,141,0); }
+      100% { box-shadow: 0 12px 24px rgba(46,211,141,.18), 0 0 0 0 rgba(46,211,141,0); }
     }
 
     .no{
       background:white;
       border:1px solid rgba(0,0,0,.12);
-      padding:14px 20px;
-      border-radius:16px;
+      padding:14px 22px;
+      border-radius:18px;
       position:relative;
     }
 
     .hint{
-      margin:10px 0 0;
+      margin:12px 0 0;
       font-size:14px;
-      opacity:.75;
+      opacity:.78;
+      line-height:1.5;
     }
 
     .nowPlaying{
       margin-top:10px;
       font-size:13px;
-      opacity:.75;
+      opacity:.8;
       display:none;
       padding:10px 12px;
       border-radius:14px;
@@ -183,16 +206,22 @@
       margin-top:18px;
       display:none;
       padding:18px;
-      border-radius:20px;
+      border-radius:22px;
       background:linear-gradient(135deg, rgba(255,77,141,.12), rgba(255,120,168,.12));
       border:1px solid rgba(255,77,141,.25);
     }
 
     .result h2{
-      margin:0 0 6px;
-      font-size:22px;
+      margin:0 0 8px;
+      font-family: 'Playfair Display', serif;
+      font-size:26px;
     }
-    .result p{ margin:0; opacity:.9; line-height:1.5; }
+    .result p{
+      margin:0;
+      opacity:.92;
+      line-height:1.7;
+      font-size:15.5px;
+    }
 
     .footer{
       margin-top:16px;
@@ -214,7 +243,7 @@
 <body>
   <div class="hearts"></div>
 
-  <!-- ✅ Song file must exist in repo as: tujhme.mp3 -->
+  <!-- ✅ Put your song in the repo as EXACTLY: tujhme.mp3 -->
   <audio id="loveSong" preload="auto">
     <source src="tujhme.mp3" type="audio/mpeg">
   </audio>
@@ -223,13 +252,16 @@
     <div class="badge">💌 Official Request • Valentine Edition</div>
 
     <h1 class="title">Hey <span id="nameSpot">you</span>…</h1>
+
     <p class="subtitle">
-      I’m making this <b>official</b> because you deserve a proper moment.
-      This page is cute on purpose. Don’t judge me. 😤💘
+      I wanted to do this <b>slowly</b>, <b>properly</b>, and a little dramatically —
+      because some people aren’t meant for casual moments.  
+      <br><br>
+      <i>(Yes, this page is cute on purpose. I hope you’re smiling already.)</i> 💗
     </p>
 
     <div class="inputRow">
-      <input id="nameInput" placeholder="Type your name here (for official records) ✍️" maxlength="24"/>
+      <input id="nameInput" placeholder="Type your name (for official records) ✍️" maxlength="24"/>
       <button class="btn btnPrimary" id="saveName">Save ✨</button>
     </div>
 
@@ -241,7 +273,10 @@
         <button class="btn no" id="noBtn">No 🙂</button>
       </div>
 
-      <p class="hint" id="hint">Hint: The “No” button is shy. Very shy.</p>
+      <p class="hint" id="hint">
+        Take your time. I’ll wait.  
+        <br><span style="opacity:.6">(I’m not nervous. At all.)</span>
+      </p>
 
       <div class="nowPlaying" id="nowPlaying">🎵 Now playing: <b>Tujh Mein Rab Dikhta Hai</b></div>
     </section>
@@ -258,12 +293,12 @@
   </main>
 
   <script>
-    const nameInput = document.getElementById("nameInput");
-    const nameSpot  = document.getElementById("nameSpot");
-    const saveName  = document.getElementById("saveName");
-    const noBtn     = document.getElementById("noBtn");
-    const yesBtn    = document.getElementById("yesBtn");
-    const hint      = document.getElementById("hint");
+    const nameInput  = document.getElementById("nameInput");
+    const nameSpot   = document.getElementById("nameSpot");
+    const saveName   = document.getElementById("saveName");
+    const noBtn      = document.getElementById("noBtn");
+    const yesBtn     = document.getElementById("yesBtn");
+    const hint       = document.getElementById("hint");
 
     const result     = document.getElementById("result");
     const resultText = document.getElementById("resultText");
@@ -282,10 +317,10 @@
       if (!n) return;
       localStorage.setItem("valName", n);
       nameSpot.textContent = n;
-      popConfetti(20);
+      popConfetti(22);
     });
 
-    // Make the "No" button run away (cute)
+    // Make the "No" button run away
     let dodgeCount = 0;
 
     function moveNoButton() {
@@ -313,15 +348,15 @@
         "Stop chasing me 😤💗",
         "Ok last time… maybe."
       ];
-      hint.textContent = lines[Math.min(dodgeCount-1, lines.length-1)];
+      hint.innerHTML = lines[Math.min(dodgeCount-1, lines.length-1)] + "<br><span style='opacity:.6'>(I’m not nervous. At all.)</span>";
     }
 
     noBtn.addEventListener("mouseenter", moveNoButton);
     noBtn.addEventListener("click", moveNoButton);
 
-    // ✅ YES: play song + show result + confetti
+    // YES click
     yesBtn.addEventListener("click", () => {
-      // Play the song (fade in)
+      // Play song with soft fade-in
       if (song) {
         song.volume = 0;
         song.currentTime = 0;
@@ -336,7 +371,6 @@
             if (v >= 0.7) clearInterval(fade);
           }, 120);
         }).catch(err => {
-          // If something blocks audio, you’ll know
           console.log("PLAY ERROR:", err);
           nowPlaying.style.display = "inline-block";
           nowPlaying.innerHTML = "⚠️ Song couldn’t play (check file name: <b>tujhme.mp3</b>)";
@@ -345,22 +379,27 @@
 
       const n = (localStorage.getItem("valName") || "my love");
       result.style.display = "block";
-      resultText.innerHTML =
-        `Okay ${escapeHtml(n)}… it’s official. 💍(almost) <br/><br/>
-         You just unlocked: <b>Unlimited hugs</b>, <b>soft kisses</b>, and <b>me being annoyingly in love</b> with you. 🥰<br/><br/>
-         Now go text me: <b>"Yes, I’m yours 💘"</b>`;
 
-      popConfetti(80);
+      resultText.innerHTML =
+        `Okay <b>${escapeHtml(n)}</b>…<br><br>
+         I don’t know when exactly this happened — but somewhere between the laughs,
+         the comfort, and the way you feel like home…<br><br>
+         I started hoping you’d always be my person. 🤍<br><br>
+         So yes, this is me asking — properly, softly, and very sincerely:<br>
+         <b>will you be my Valentine?</b> 🌷<br><br>
+         <b>(You already said yes, but still.)</b> 💘`;
+
+      popConfetti(90);
       playCuteBeep();
     });
 
     function escapeHtml(str){
-      return str.replace(/[&<>"']/g, (m) => ({
+      return String(str).replace(/[&<>"']/g, (m) => ({
         "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
       }[m]));
     }
 
-    // Confetti (simple hearts)
+    // Confetti hearts
     function popConfetti(count){
       for(let i=0;i<count;i++){
         const el = document.createElement("div");
